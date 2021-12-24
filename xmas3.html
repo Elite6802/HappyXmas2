@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page Title</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Charm" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style type="text/css">
+        *{
+        margin:0; padding:0;
+        box-sizing:border-box;
+        }
+        
+        .dbg{ outline:3px solid blue;}
+        
+        html{background-image:linear-gradient(#112, #115); width:100%; height:100%; }
+        
+        #main{
+        position:relative;
+        
+        }
+        
+        .angel{
+        position:absolute;
+        top:0; left:5%;
+        width:20%;
+        padding-top:30%;
+        }
+        
+        #ball{
+        width:80vmin;
+        height:80vmin;
+        margin:auto;
+        border-radius:50%;
+        position:relative;
+        overflow:hidden;
+        box-shadow: inset -10px -5px 20px 15px rgba(255,255,255,.7), inset 60px 0 15px 5px rgba(255,255,255,.55), inset 0px 0px 20px 8px black, 0 0 20px 2px white;
+        background-image:radial-gradient(rgba(255,255,255,.35), transparent 60%);
+        z-index:auto;
+        }
+        #snow-l1{
+        width:100%;
+        height:100%;
+        z-index:1;
+        position:relative;
+        }
+        #floor{
+        position:absolute;
+        top:80%; bottom:0;
+        left:0; right:0;
+        background-color:green;
+        border-radius:50% 25%;
+        z-index:-2;
+        }
+        
+        #base{
+        position:absolute;
+        top:70vmin;
+        width:50vmin;
+        margin:auto;
+        height:30vmin;
+        left:50%;
+        -webkit-transform:translate(-50%);
+        transform:translate(-50%);
+        z-index:2;
+        }
+        .round{ 
+        border-radius:5% / 35%; 
+        width:100%; height:33%; 
+        background-color:#5A3300;
+        position:relative;
+        left:50%;
+        -webkit-transform: translate(-50%) scale(1.1);
+        transform:translate(-50%) scale(1.1);
+        box-shadow:inset 0px -5px 15px 2px rgba(0,0,0,.8);
+        background-image: linear-gradient(to right, transparent, rgba(255,255,255,.15) 20%,rgba(255,255,255,.2), rgba(0,0,0,.45) 80%, rgba(0,0,0,.65) ), linear-gradient(transparent 1%, rgba(255,255,255,.45) 8%, transparent 15%);
+        padding:5%;
+        }
+        .round:nth-child(2){
+        width:120%;
+        }
+        
+        .round:nth-child(3){
+        width:140%;
+        }
+        
+        #snowman{
+        position:absolute;
+        bottom:16%; right:25%;
+        width:7%; height:20%;
+        -webkit-transform-origin:100% 100%;
+        transform-origin:100% 100%;
+        -webkit-transform:scale(2.5);
+        transform:scale(2.5);
+        z-index:0;
+        }
+        .arm{
+        width:100%; height:5%;
+        position:absolute;
+        left:-80%; top:40%;
+        background-color:brown;
+        transform:rotate(25deg);
+        border-radius:0 30% 30% 0;
+        }
+        .arm:nth-child(2){
+        left:auto; right:10%;
+        }
+        .snowman-piece{
+        background-color:#ddd;
+        width:100%; height:33%;
+        border-radius:35% / 40%;
+        background-image:radial-gradient(transparent 40%,rgba(0,0,0,.4));
+        }
+        .snowman-piece:nth-child(1){
+        border-radius:45%;
+        -webkit-transform: translateY(10%) scale(0.75);
+        transform: translateY(10%) scale(0.75);
+        -webkit-transform-origin:50% 100%;
+        transform-origin:50% 100%;
+        z-index:-1;
+        position:relative ;
+        }
+        .eye{ 
+        border-radius:50%; 
+        width:20%;
+        padding-top:20%;
+        background-color:black;
+        position:absolute;
+        top:20%; left:20%;
+        }
+        .eye:nth-child(2){
+        left:auto;
+        right:20%;
+        }
+        .snowman-piece:nth-child(2){
+        z-index:1;
+        }
+        .snowman-piece:nth-child(3){
+        -webkit-transform:scale(1.3);
+        transform:scale(1.3);
+        }
+        
+        .tag{
+        font-size: 5vmin;
+        font-family:Charm, Verdana;
+        line-height:7vmin;
+        text-align:center;
+        border-radius:1vmin;
+        background-color:gold;
+        width:80%;
+        height:7vmin;
+        margin:auto;
+        box-shadow:0 0 5px 1px black, inset 0 0 2px 1px gold;
+        background-image:linear-gradient(to right, rgba(255,255,255,.3), rgba(0,0,0,.25)), linear-gradient(40deg, transparent 20%, #daa520 60%,transparent 80%);
+        position:relative;
+        top:-20%;
+        }
+        .void{
+        width:3%; padding-top:3%;
+        position:absolute;
+        top:2%; left:2%;
+        border-radius:50%;
+        background-image:linear-gradient(45deg, #a62, #a62 45%, transparent 45%, transparent 50%, #a62 50%, #a62);
+        }
+        
+        .void:nth-child(2){
+        left:auto; right:2%;
+        -webkit-transform:rotate(20deg);
+        transform:rotate(20deg);
+        }
+        
+        .void:nth-child(3){
+        top:auto; bottom:2%;
+        -webkit-transform:rotate(35deg);
+        transform:rotate(35deg);
+        }
+        
+        .void:nth-child(4){
+        top:auto; bottom:2%;
+        left:auto; right:2%;
+        -webkit-transform:rotate(15deg);
+        transform:rotate(15deg);
+        }
+        </style>
+    </head>
+    <body>
+        <div id='main'>
+            <div class='angel dbg'></div>
+            <div id='ball'>
+                <canvas id='snow-l1'></canvas>
+                <div id='snowman'>
+                    <div class='snowman-piece'>
+                        <div class='eye'></div>
+                        <div class='eye'></div>
+                    </div>
+                    <div class='snowman-piece'></div>
+                    <div class='snowman-piece'></div>
+                    <!--<div class='arm'></div>
+                    <div class='arm'></div>-->
+                </div>
+                <div id='floor'></div>
+            </div>
+            <div id='base'>
+                <div class='round'>
+                </div>
+                <div class='round'></div>
+                <div class='round'>
+                    <div class='tag'>Merry Christmas<div class='void'></div>
+                    <div class='void'></div><div class='void'></div>
+                    <div class='void'></div></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+          function SnowFlake(x, y, size){
+          this.x= x; this.y=y;
+          this.size= size || 10
+          this.draw= function(ctx){
+          //ctx.arc(100, 75, 50, 0, 2 * Math.PI);
+          ctx.beginPath()
+          ctx.arc(this.x, this.y, this.size, 0, 2*Math.PI)
+          ctx.fill()
+          }
+          }
+          
+          function randomRange(low, high){
+          return Math.random()*(high-low)+low
+          }
+          
+          
+          var App= {
+          refs: {
+          snow1:'snow-l1',
+          ball:'ball'
+          },
+          _cnvRect: null,
+          _snowLayersData:[[],[],[]],
+          init: function(){
+          for(var n in App.refs){
+          App.refs[n]= document.getElementById(App.refs[n])
+          }
+          this._cnvRect= this.refs.snow1.getBoundingClientRect()
+          App._generateSnowLayers()
+          this.refs.snow1.width= this._cnvRect.width
+          this.refs.snow1.height= this._cnvRect.height
+          var update= function(){
+          App.update()
+          window.requestAnimationFrame(update)
+          }
+          window.requestAnimationFrame(update)
+          },
+          _generateSnowLayers: function(){
+          // generate first layer
+          var n= 50
+          var maxX= this._cnvRect.width
+          var minY= -this._cnvRect.height
+          var flakeSize= randomRange(maxX*.01, maxX*.02)
+          var flakeSize2= randomRange(maxX*.005, maxX*.01)
+          var flakeSize3= randomRange(maxX*.001, maxX*.004)
+          for(var i=0; i<n; ++i){
+          this._snowLayersData[0].push(new SnowFlake(randomRange(0, maxX), randomRange(minY,0), flakeSize))
+          this._snowLayersData[1].push(new SnowFlake(randomRange(0,maxX), randomRange(minY,0), flakeSize2))
+          this._snowLayersData[2].push(new SnowFlake(randomRange(0,maxX), randomRange(minY,0), flakeSize3))
+          }
+          },
+          update: function(){
+          var ctx= this.refs.snow1.getContext('2d')
+          var layersLen= this._snowLayersData.length
+          ctx.fillStyle= 'white'
+          ctx.clearRect(0,0,this._cnvRect.width, this._cnvRect.height)
+          var snowl1Vel= this._cnvRect.width*0.01
+          //var start= performance.now()
+          for(var i=0; i<layersLen; ++i){
+          var flakes= this._snowLayersData[i]
+          var flakesLen= flakes.length
+          for(var j=flakesLen-1; j>=0; --j){
+          flakes[j].y+= snowl1Vel-(i*1.5)
+          if(flakes[j].y > this._cnvRect.height)
+          flakes[j].y= 0
+          flakes[j].draw(ctx)
+          }
+          }
+          //console.log(performance.now()-start)
+          }
+          }
+          
+          
+          window.onload= function(){
+          App.init()
+          }
+        </script>
+    </body>
+</html>
